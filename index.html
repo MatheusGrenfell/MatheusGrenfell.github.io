@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Marmitex da Sol — comida caseira, pratos do dia e delivery. Faça seu pedido pelo WhatsApp.">
+  <title>Marmitex da Sol | Peça pelo WhatsApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brown:#32170f;
+      --brown-2:#4a2418;
+      --orange:#f7a51a;
+      --orange-2:#ffbd43;
+      --cream:#fff8ef;
+      --white:#fff;
+      --text:#2b211e;
+      --muted:#766862;
+      --line:#eadfd6;
+      --green:#25d366;
+      --shadow:0 16px 45px rgba(50,23,15,.12);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Poppins,Arial,sans-serif;background:var(--cream);color:var(--text)}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .topbar{background:var(--brown);color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:600}
+    header{position:sticky;top:0;z-index:20;background:rgba(255,248,239,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(50,23,15,.08)}
+    .nav{max-width:1180px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{font-family:Montserrat,sans-serif;font-weight:800;color:var(--brown);line-height:.9}
+    .brand span{display:block;color:var(--orange);font-family:"Brush Script MT",cursive;font-size:29px;font-weight:500;margin-left:30px;margin-top:5px}
+    .navlinks{display:flex;gap:22px;font-size:14px;font-weight:600;color:#5e4b43}
+    .navlinks a:hover{color:var(--orange)}
+    .navcta{background:var(--green);color:#fff;padding:11px 17px;border-radius:999px;font-weight:700;font-size:13px}
+    .hero{background:linear-gradient(135deg,var(--brown) 0%,#4b2417 60%,#29130d 100%);color:#fff;overflow:hidden}
+    .hero-inner{max-width:1180px;margin:auto;padding:72px 20px 70px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:45px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(247,165,26,.13);border:1px solid rgba(247,165,26,.35);color:#ffd27b;padding:8px 13px;border-radius:999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+    h1{font-family:Montserrat,sans-serif;font-size:clamp(40px,6vw,70px);line-height:1.02;margin:20px 0 17px;letter-spacing:-2px}
+    h1 span{color:var(--orange)}
+    .hero p{font-size:18px;line-height:1.7;color:#f4e8e1;max-width:650px;margin:0 0 28px}
+    .hero-buttons{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:12px;padding:14px 19px;font-weight:800;cursor:pointer;transition:.2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-orange{background:var(--orange);color:var(--brown)}
+    .btn-green{background:var(--green);color:#fff}
+    .btn-outline{border:1px solid rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.06)}
+    .hero-card{position:relative}
+    .hero-card img{width:100%;max-width:430px;display:block;margin:auto;border-radius:26px;box-shadow:0 28px 70px rgba(0,0,0,.35);transform:rotate(2deg)}
+    .section{max-width:1180px;margin:auto;padding:70px 20px}
+    .section-head{text-align:center;max-width:720px;margin:0 auto 36px}
+    .section-head .tag{color:var(--orange);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px}
+    .section-head h2{font-family:Montserrat,sans-serif;font-size:clamp(28px,4vw,43px);margin:8px 0 10px;color:var(--brown)}
+    .section-head p{color:var(--muted);margin:0;line-height:1.7}
+    .day-tabs{display:flex;gap:8px;overflow:auto;padding:4px 2px 14px;margin-bottom:20px;scrollbar-width:none}
+    .day-tabs::-webkit-scrollbar{display:none}
+    .day-tab{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--brown);padding:10px 15px;border-radius:999px;font-weight:700;cursor:pointer}
+    .day-tab.active{background:var(--brown);color:#fff;border-color:var(--brown)}
+    .menu-panel{display:none}
+    .menu-panel.active{display:block}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .food-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 7px 25px rgba(50,23,15,.05);display:flex;flex-direction:column;min-height:205px}
+    .food-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);transition:.2s}
+    .food-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+    .food-card h3{font-family:Montserrat,sans-serif;font-size:17px;margin:0;color:var(--brown)}
+    .price{color:#d67d00;font-family:Montserrat,sans-serif;font-weight:800;white-space:nowrap;font-size:18px}
+    .food-card p{color:var(--muted);font-size:13px;line-height:1.55;margin:9px 0 18px}
+    .food-card .order{margin-top:auto;width:100%;padding:11px 13px;border-radius:11px}
+    .all-menu{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .menu-images{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+    .menu-images img{width:100%;border-radius:18px;box-shadow:var(--shadow);display:block}
+    .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .info-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;text-align:center}
+    .icon{font-size:28px;margin-bottom:8px}
+    .info-card h3{font-family:Montserrat,sans-serif;margin:4px 0 7px;color:var(--brown)}
+    .info-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+    .cta{background:var(--brown);color:#fff}
+    .cta-inner{max-width:900px;margin:auto;text-align:center;padding:65px 20px}
+    .cta h2{font-family:Montserrat,sans-serif;font-size:clamp(30px,5vw,48px);margin:0 0 12px}
+    .cta p{color:#eadbd3;margin:0 auto 25px;line-height:1.7}
+    footer{background:#210e09;color:#cdbdb5;padding:25px 20px;text-align:center;font-size:13px}
+    .floating{position:fixed;right:20px;bottom:20px;z-index:30;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green);color:#fff;box-shadow:0 12px 30px rgba(0,0,0,.22);font-size:27px}
+    .toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,120px);background:var(--brown);color:#fff;padding:13px 18px;border-radius:12px;z-index:50;font-size:13px;box-shadow:var(--shadow);transition:.3s;opacity:0}
+    .toast.show{transform:translate(-50%,0);opacity:1}
+    @media(max-width:850px){
+      .hero-inner{grid-template-columns:1fr;padding-top:48px}
+      .hero-card{order:-1}
+      .hero-card img{max-width:300px}
+      .navlinks{display:none}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .info-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:580px){
+      .grid{grid-template-columns:1fr}
+      .menu-images{grid-template-columns:1fr}
+      .hero-inner{padding-bottom:50px}
+      h1{letter-spacing:-1px}
+      .section{padding:52px 16px}
+      .food-card{min-height:185px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">🍽️ Comida caseira • Delivery • Peça pelo WhatsApp</div>
+
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#">MARMITEX <span>da Sol</span></a>
+      <div class="navlinks">
+        <a href="#cardapio">Cardápio</a>
+        <a href="#todos-os-dias">Todos os dias</a>
+        <a href="#endereco">Contato</a>
+      </div>
+      <a class="navcta" href="https://wa.me/5511968953353" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">🔥 Sabor de comida caseira</div>
+          <h1>Seu almoço do jeito que você <span>gosta.</span></h1>
+          <p>Escolha seu prato, clique em pedir e mande sua escolha direto para o nosso WhatsApp. Rápido, simples e sem complicação.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-orange" href="#cardapio">🍴 Ver cardápio</a>
+            <a class="btn btn-green" href="https://wa.me/5511968953353?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" rel="noopener">💬 Pedir pelo WhatsApp</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img src="cardapio-1.jpg" alt="Cardápio Marmitex da Sol">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cardapio">
+      <div class="section-head">
+        <div class="tag">Cardápio da semana</div>
+        <h2>Escolha seu prato</h2>
+        <p>Clique em qualquer opção para enviar automaticamente o nome do prato para o WhatsApp.</p>
+      </div>
+
+      <div class="day-tabs" role="tablist">
+        <button class="day-tab active" data-day="segunda">Segunda</button>
+        <button class="day-tab" data-day="terca">Terça</button>
+        <button class="day-tab" data-day="quarta">Quarta</button>
+        <button class="day-tab" data-day="quinta">Quinta</button>
+        <button class="day-tab" data-day="sexta">Sexta</button>
+        <button class="day-tab" data-day="sabado">Sábado</button>
+      </div>
+
+      <div id="menus">
+        <div class="menu-panel active" data-panel="segunda"></div>
+        <div class="menu-panel" data-panel="terca"></div>
+        <div class="menu-panel" data-panel="quarta"></div>
+        <div class="menu-panel" data-panel="quinta"></div>
+        <div class="menu-panel" data-panel="sexta"></div>
+        <div class="menu-panel" data-panel="sabado"></div>
+      </div>
+    </section>
+
+    <section class="section" id="todos-os-dias">
+      <div class="section-head">
+        <div class="tag">Todos os dias</div>
+        <h2>Pratos de todos os dias</h2>
+        <p>Mais opções para você escolher. Toque em “Pedir” e continue o pedido no WhatsApp.</p>
+      </div>
+      <div class="grid" id="daily-grid"></div>
+    </section>
+
+    <section class="all-menu">
+      <div class="section">
+        <div class="section-head">
+          <div class="tag">Cardápio completo</div>
+          <h2>Veja os cardápios originais</h2>
+          <p>Se preferir, confira também as imagens completas do cardápio.</p>
+        </div>
+        <div class="menu-images">
+          <img src="cardapio-1.jpg" alt="Cardápio semanal Marmitex da Sol">
+          <img src="cardapio-2.jpg" alt="Pratos de todos os dias Marmitex da Sol">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="endereco">
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="icon">📍</div>
+          <h3>Endereço</h3>
+          <p>Rua Bacia de São Francisco, 12</p>
+        </div>
+        <div class="info-card">
+          <div class="icon">📱</div>
+          <h3>WhatsApp</h3>
+          <p>(11) 96895-3353</p>
+        </div>
+        <div class="info-card">
+          <div class="icon">🛵</div>
+          <h3>Delivery</h3>
+          <p>Entregamos no conforto da sua casa. Peça já!</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="cta-inner">
+        <h2>Deu fome? Peça agora! 😋</h2>
+        <p>Escolha seu prato e mande seu pedido pelo WhatsApp.</p>
+        <a class="btn btn-green" href="https://wa.me/5511968953353?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" rel="noopener">💬 Fazer pedido no WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <a class="floating" href="https://wa.me/5511968953353?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" rel="noopener" aria-label="Abrir WhatsApp">◔</a>
+  <div class="toast" id="toast">Abrindo o WhatsApp…</div>
+
+  <footer>Marmitex da Sol • Rua Bacia de São Francisco, 12 • (11) 96895-3353</footer>
+
+  <script>
+    const phone = "5511968953353";
+
+    const menus = {
+      segunda: [
+        ["Virado à Paulista","Arroz, tutu, bisteca, ovo, torresmo, couve, banana empanada e calabresa","38"],
+        ["Sobrecoxa assada","Arroz, feijão, farofa, sobrecoxa e salada de maionese","22"],
+        ["Picadinho Cremoso","Arroz, feijão, farofa e picadinho","20"]
+      ],
+      terca: [
+        ["Dobradinha","Arroz, dobradinha e farofa","28"],
+        ["Almôndegas com macarrão","Arroz, feijão, macarrão e almôndegas","22"],
+        ["Panqueca (Frango ou Carne)","Arroz, feijão e panqueca","22"]
+      ],
+      quarta: [
+        ["Strogonoff de Frango","Arroz, feijão (opcional), strogonoff e batata palha","24"],
+        ["Costela Cozida com Mandioca","Arroz, feijão, costela com mandioca e farofa","25"],
+        ["Feijoada Mini","Arroz, bisteca, farofa, torresmo, couve e feijoada","25"],
+        ["Feijoada Pequena","Arroz, bisteca, farofa, torresmo, couve e feijoada","50"],
+        ["Feijoada Média","Arroz, bisteca, farofa, torresmo, couve e feijoada","70"],
+        ["Feijoada Grande","Arroz, bisteca, farofa, torresmo, couve e feijoada","100"]
+      ],
+      quinta: [
+        ["Lasanha à Bolonhesa","Arroz, feijão (opcional) e lasanha","26"],
+        ["Baião de Dois Simples","Arroz, feijão fradinho, calabresa, carne seca e mussarela","36"],
+        ["Baião de Dois com Costelinha","Arroz, feijão fradinho, calabresa, carne seca, bacon, costelinha de porco e mussarela","42"]
+      ],
+      sexta: [
+        ["Rabada com Purê","Arroz, feijão, rabada e purê","33"],
+        ["Peixe Empanado com Purê","Arroz, feijão, peixe e purê","30"],
+        ["Peixe Empanado com Molho de Camarão","Arroz, feijão, peixe, purê e molho de camarão","40"],
+        ["Bife à Rolê com Purê","Arroz, feijão, bife à rolê e purê","26"]
+      ],
+      sabado: [
+        ["Feijoada Mini","Arroz, bisteca, farofa, torresmo, couve e feijoada","25"],
+        ["Feijoada Pequena","Arroz, bisteca, farofa, torresmo, couve e feijoada","50"],
+        ["Feijoada Média","Arroz, bisteca, farofa, torresmo, couve e feijoada","70"],
+        ["Feijoada Grande","Arroz, bisteca, farofa, torresmo, couve e feijoada","100"],
+        ["Picadinho Cremoso","Arroz, feijão, farofa e picadinho","20"]
+      ]
+    };
+
+    const daily = [
+      ["Linguiça Fresca","Arroz, feijão, linguiça fresca e farofa","20"],
+      ["Steak de frango","Arroz, feijão, steak de frango à parmegiana","18"],
+      ["Filé de Frango Grelhado","Arroz, feijão, filé de frango grelhado e farofa","26"],
+      ["Fígado acebolado","Arroz, feijão, bife de fígado acebolado e farofa","20"],
+      ["Calabresa acebolada","Arroz, feijão, calabresa acebolada em rodelas e farofa","22"],
+      ["Omelete (Tradicional)","Arroz, feijão, omelete com calabresa, queijo e vinagrete e farofa","22"],
+      ["Omelete (Vegetariana)","Arroz, feijão, omelete com queijo e vinagrete e farofa","22"],
+      ["Bife Acebolado","Arroz, feijão, bife acebolado e farofa","35"],
+      ["Bife à Cavalo","Arroz, feijão, bife acebolado, dois ovos e farofa","42"],
+      ["Parmegiana de Frango","Arroz, feijão, filé de frango à parmegiana","33"],
+      ["Parmegiana de Carne","Arroz, feijão, bife à parmegiana","38"]
+    ];
+
+    function money(v){ return "R$" + v; }
+
+    function makeCard(item){
+      const [name, desc, price] = item;
+      const msg = `Olá! Gostaria de pedir: ${name} — R$${price}.`;
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+      return `
+        <article class="food-card">
+          <div class="food-top">
+            <h3>${name}</h3>
+            <div class="price">${money(price)}</div>
+          </div>
+          <p>${desc}</p>
+          <a class="btn btn-green order" href="${url}" target="_blank" rel="noopener" onclick="showToast()">💬 Pedir este prato</a>
+        </article>
+      `;
+    }
+
+    Object.entries(menus).forEach(([day, items]) => {
+      document.querySelector(`[data-panel="${day}"]`).innerHTML = `<div class="grid">${items.map(makeCard).join("")}</div>`;
+    });
+
+    document.getElementById("daily-grid").innerHTML = daily.map(makeCard).join("");
+
+    document.querySelectorAll(".day-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".day-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".menu-panel").forEach(p => p.classList.remove("active"));
+        tab.classList.add("active");
+        document.querySelector(`[data-panel="${tab.dataset.day}"]`).classList.add("active");
+      });
+    });
+
+    function showToast(){
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+  </script>
+</body>
+</html>
